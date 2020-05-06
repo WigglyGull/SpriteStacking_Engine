@@ -7,12 +7,12 @@ function Player:Create()
     playerSprite = spriteTable:CreateSprite("assets/gfx/player.png", 21, 16, 26)
     shadow = spriteTable:CreateSprite("assets/gfx/shadow.png", 21, 16, 26) 
 
-    player.x = 64
-    player.y = 32
+    player.x = 128
+    player.y = 64
     
     
     function player:Update(dt)
-        player.angle = math.atan2((love.mouse.getY() - player.y), (love.mouse.getX() - player.x))  
+        player.angle = math.atan2(((love.mouse.getY() / 3) - player.y), ((love.mouse.getX() / 3) - player.x)) - 20
     end
 
     function player:Render()
