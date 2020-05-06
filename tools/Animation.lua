@@ -1,6 +1,6 @@
 local class = require("modules/class")
 local Anim = class:derive("Animation")
-local Vector2 = require("modules/vector2")
+local Vector2 = require("module/vector2")
 
 function Anim:New(xoffset, yoffset, w, h, column_size, num_frames, fps)
     self.fps = fps

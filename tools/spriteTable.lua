@@ -23,11 +23,11 @@ function SpriteTable:StackSprite(spriteTable, angle, x, y, isShadow)
 
     if(isShadow) then
         for i=0, #spriteTable do 
-            love.graphics.draw(sprite_strip, spriteTable[i], x + i/2, y+i, angle, spriteTable.scale, spriteTable.scale, spriteTable.width, spriteTable.height)
+            love.graphics.draw(sprite_strip, spriteTable[i], x + i/2, y+(i*spriteTable.scale), angle, spriteTable.scale, spriteTable.scale, spriteTable.width, spriteTable.height)
         end
     else 
         for i=0, #spriteTable do 
-            love.graphics.draw(sprite_strip, spriteTable[i], x, y-i*.8, angle, spriteTable.scale, spriteTable.scale, spriteTable.width, spriteTable.height)
+            love.graphics.draw(sprite_strip, spriteTable[i], x, y-(i*spriteTable.scale), angle, spriteTable.scale, spriteTable.scale, spriteTable.width, spriteTable.height)
         end
     end
 end

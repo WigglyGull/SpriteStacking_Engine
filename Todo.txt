@@ -1,5 +1,5 @@
-fix sprites
 Proper player controles 
 Animator
 camera rotation
-Angle controles
+camera angle
+Trees and shit

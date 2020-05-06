@@ -6,7 +6,7 @@ local hero_sprite
 
 local angle = 0
 
-local canvas = love.graphics.newCanvas(256, 144)
+local canvas = love.graphics.newCanvas(192, 108)
 local scale = love.graphics.getWidth() / canvas:getWidth()
 
 function love.load()
