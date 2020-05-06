@@ -1,4 +1,6 @@
 local spriteTable = require("tools/spriteTable")
+local Player = require("objects/player")
+local player = Player:Create()
 local hero_atlas
 local hero_sprite
 
@@ -13,23 +15,17 @@ function love.load()
 
     hero_atlas = love.graphics.newImage("assets/gfx/hero.png")
     hero_sprite = love.graphics.newQuad(16, 32, 16, 16, hero_atlas:getDimensions())
-    
-    player = spriteTable:CreateSprite("assets/gfx/player.png", 21, 16, 26)
-    shadow = spriteTable:CreateSprite("assets/gfx/shadow.png", 21, 16, 26)
 end
 
 function love.update(dt)
-    angle = angle + 27.5 * dt
+    player:Update(dt)
 end
 
 function love.draw()
     love.graphics.setCanvas(canvas)
     love.graphics.clear(103/255, 177/255, 75/255)
 
-    love.graphics.setColor(1,1,1,0.1)
-    spriteTable:StackSprite(shadow, angle, 88, 49.5, true)
-    love.graphics.setColor(1,1,1,1)
-    spriteTable:StackSprite(player, angle, 88, 49.5, false)
+    player:Render()
 
     love.graphics.setCanvas()
     love.graphics.draw(canvas, 0, 0, 0, scale, scale)
