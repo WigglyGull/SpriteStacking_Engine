@@ -4,6 +4,16 @@ local HelperFunc = {}
         return (1-perc)*pos1 + perc*pos2 -- Linear Interpolation
     end
 
+    function HelperFunc:angleLerp(pos1, pos2, perc)
+        return pos1 + shortAngle(pos1, pos2) * perc
+    end
+
+    function shortAngle(a0, a1)
+        local max = math.pi * 2
+        local da = (a1 - a0) % max;
+        return 2*da % max - da
+    end
+
     function HelperFunc:Approach(first, last, shift)
         if(first < last) then
             return math.min(first + shift, last)

@@ -1,4 +1,3 @@
-Proper player controles 
 Animator
 camera rotation
 camera angle
