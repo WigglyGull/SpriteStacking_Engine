@@ -25,10 +25,9 @@ function Player:Create()
         if(player.axis.x == 0 and player.axis.y == 0) then
             applyFriction(acceleration * dt)
         else 
+            setRotation()
             applyMovement(Vec2:New(player.axis.x * acceleration * dt, player.axis.y * acceleration * dt))
         end
-
-        setRotation()
 
         motion = Vec2:New(motion.x * dt, motion.y * dt)
         player.position.x = player.position.x + motion.x 
@@ -69,45 +68,12 @@ function Player:Create()
     end
 
     function setRotation()
-        local playerOffsetx = 0
-        local playerOffsety = 0
-
-        if(player.axis.y == -1 and player.axis.x == 0) then
-            playerOffsetx = -2
-            playerOffsety = -5
-        elseif(player.axis.y == 1 and player.axis.x == 0) then
-            playerOffsetx = 2
-            playerOffsety = 5
-        elseif(player.axis.x == -1 and player.axis.y == 0) then
-            playerOffsetx = -5
-            playerOffsety = 2
-        elseif(player.axis.x == 1 and player.axis.y == 0) then
-            playerOffsetx = 5
-            playerOffsety = -2
-        end
-
-        lookPos = Vec2:New((player.position.x+playerOffsetx)+player.axis.x, (player.position.y+playerOffsety)+player.axis.y)
-        direction = math.atan2(((lookPos.y) - player.position.y), ((lookPos.x) - player.position.x)) - 20
-        player.angle = helperFuncs:Lerp(player.angle, direction, 0.1)
+        lookPos = Vec2:New(player.position.x-player.axis.x, player.position.y+player.axis.y)
+        direction = math.atan2(lookPos.x - player.position.x, lookPos.y - player.position.y)
+        player.angle = helperFuncs:angleLerp(player.angle, direction, 0.1)
     end
 
     return player
 end
 
 return Player
-
--- function Movement()
-    -- if(key("w")) then
-        -- player.y = player.y - speed
-        -- lookPos = Vec2:New(player.x-2, player.y-5)
-    -- elseif(key("s")) then
-        -- player.y = player.y + speed
-        -- lookPos = Vec2:New(player.x+2, player.y+5)
-    -- elseif(key("a")) then
-        -- player.x = player.x - speed
-        -- lookPos = Vec2:New(player.x-5, player.y+2)
-    -- elseif(key("d")) then
-        -- player.x = player.x + speed
-        -- lookPos = Vec2:New(player.x+5, player.y-2)
-    -- end
--- end
