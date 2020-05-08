@@ -1,9 +1,9 @@
-local class = require("module/class")
+local class = require("modules/class")
 local Anim = class:derive("Animation")
-local Vector2 = require("module/vector2")
-local spriteTable = require("tools/spriteTable")
+local Vector2 = require("modules/vector2")
+local spriteTable = require("engineTools/spriteTable")
 
-function Anim:New(num_frames, fps)
+function Anim:new(num_frames, fps)
     self.fps = fps
     self.timer = 1 / self.fps
     self.frame = 1

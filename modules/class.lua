@@ -1,7 +1,7 @@
 local Class = {}
 Class.__index = Class
 
-function Class:New() end
+function Class:new() end
 
 function Class:derive(type)
     local cls = {}
@@ -15,7 +15,7 @@ end
 
 function Class:__call(...)
     local inst = setmetatable({}, self)
-    inst:New(...)
+    inst:new(...)
     return inst
 end
 

@@ -1,6 +1,8 @@
 Recode animation system
-Clean code / add entity sysyem
+reanimate player run
+
 depth sorting
 camera rotation
 camera angle
+
 Trees and shit

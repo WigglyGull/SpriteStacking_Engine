@@ -1,7 +1,7 @@
-local spriteTable = require("tools/spriteTable")
-local Vec2 = require("module/vector2")
-local helperFuncs = require("tools/helperFunctions")
-local anim = require("tools/Animation")
+local spriteTable = require("engineTools/spriteTable")
+local Vec2 = require("modules/vector2")
+local utils = require("utils")
+local anim = require("engineTools/animator")
 
 local Player = {}
 
@@ -36,7 +36,7 @@ function Player:Create()
     local key = love.keyboard.isDown
     local lookPos = Vec2:New(player.position.x+2, player.position.y+5)
     
-    function player:Update(dt)
+    function player:update(dt)
         player.axis = getAxis()
         if(player.axis.x == 0 and player.axis.y == 0) then
             applyFriction(acceleration * dt)
@@ -55,17 +55,17 @@ function Player:Create()
         elseif(offset >= 1) then up = false end
 
         if(moving == false) then 
-            if(up == false) then offset = helperFuncs:Lerp(offset, 0.75, 0.01)
-            else offset = helperFuncs:Lerp(offset, 1.1, 0.02) end
+            if(up == false) then offset = utils:Lerp(offset, 0.75, 0.01)
+            else offset = utils:Lerp(offset, 1.1, 0.02) end
         else 
-            if(up == false) then offset = helperFuncs:Lerp(offset, 0.75, 0.03)
-            else offset = helperFuncs:Lerp(offset, 1.1, 0.04) end
+            if(up == false) then offset = utils:Lerp(offset, 0.75, 0.05)
+            else offset = utils:Lerp(offset, 1.1, 0.06) end
         end
 
         runAnim:Update(dt, playerRunAnimation)
     end
 
-    function player:Render()
+    function player:render()
         love.graphics.setColor(1,1,1,0.4)
         love.graphics.draw(shadow, player.position.x, player.position.y, player.angle, 1, 1, shadow:getWidth()/2, shadow:getHeight()/2)
 
@@ -79,8 +79,8 @@ function Player:Create()
 
     function getAxis()
         local axis = Vec2:New()
-        axis.x = helperFuncs:boolToNumber(key("d")) - helperFuncs:boolToNumber(key("a"))
-        axis.y = helperFuncs:boolToNumber(key("s")) - helperFuncs:boolToNumber(key("w"))
+        axis.x = utils:boolToNumber(key("d")) - utils:boolToNumber(key("a"))
+        axis.y = utils:boolToNumber(key("s")) - utils:boolToNumber(key("w"))
         return axis:normalized()
     end
     
@@ -106,7 +106,7 @@ function Player:Create()
     function setRotation()
         lookPos = Vec2:New(player.position.x-player.axis.x, player.position.y+player.axis.y)
         direction = math.atan2(lookPos.x - player.position.x, lookPos.y - player.position.y)
-        player.angle = helperFuncs:angleLerp(player.angle, direction, 0.1)
+        player.angle = utils:angleLerp(player.angle, direction, 0.1)
     end
 
     return player

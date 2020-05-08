@@ -1,10 +1,10 @@
-local HelperFunc = {}
+local Utils = {}
 
-    function HelperFunc:Lerp(pos1, pos2, perc)
+    function Utils:Lerp(pos1, pos2, perc)
         return (1-perc)*pos1 + perc*pos2 -- Linear Interpolation
     end
 
-    function HelperFunc:angleLerp(pos1, pos2, perc)
+    function Utils:angleLerp(pos1, pos2, perc)
         return pos1 + shortAngle(pos1, pos2) * perc
     end
 
@@ -14,7 +14,7 @@ local HelperFunc = {}
         return 2*da % max - da
     end
 
-    function HelperFunc:Approach(first, last, shift)
+    function Utils:Approach(first, last, shift)
         if(first < last) then
             return math.min(first + shift, last)
         elseif (first > last) then
@@ -22,8 +22,8 @@ local HelperFunc = {}
         else return end
     end
 
-    function HelperFunc:boolToNumber(value)
+    function Utils:boolToNumber(value)
         return value == true and 1 or value == false and 0
     end
 
-return HelperFunc
+return Utils
