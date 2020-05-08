@@ -3,9 +3,9 @@ Class.__index = Class
 
 function Class:New() end
 
-function Class:Derive(type)
+function Class:derive(type)
     local cls = {}
-    cls["__call"] = class.__call
+    cls["__call"] = Class.__call
     cls.type = type
     cls.__index = cls
     cls.super = self

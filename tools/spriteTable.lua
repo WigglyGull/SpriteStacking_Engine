@@ -18,17 +18,12 @@ function SpriteTable:CreateSprite(source, num_frames, width, height, scale)
     return spriteTable
 end
 
-function SpriteTable:StackSprite(spriteTable, angle, x, y, isShadow)
+function SpriteTable:StackSprite(spriteTable, angle, x, y, offset)
     sprite_strip = love.graphics.newImage(spriteTable.source)
-
-    if(isShadow) then
-        for i=0, #spriteTable do 
-            love.graphics.draw(sprite_strip, spriteTable[i], x + i/2, y+(i*spriteTable.scale), angle, spriteTable.scale, spriteTable.scale, spriteTable.width, spriteTable.height)
-        end
-    else 
-        for i=0, #spriteTable do 
-            love.graphics.draw(sprite_strip, spriteTable[i], x, y-(i*spriteTable.scale), angle, spriteTable.scale, spriteTable.scale, spriteTable.width, spriteTable.height)
-        end
+    offset = offset or 1
+    
+    for i=0, #spriteTable do 
+        love.graphics.draw(sprite_strip, spriteTable[i], x, y-(i*spriteTable.scale)*offset, angle, spriteTable.scale, spriteTable.scale, spriteTable.width, spriteTable.height)
     end
 end
 

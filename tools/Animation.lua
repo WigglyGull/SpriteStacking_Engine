@@ -1,28 +1,32 @@
-local class = require("modules/class")
+local class = require("module/class")
 local Anim = class:derive("Animation")
 local Vector2 = require("module/vector2")
+local spriteTable = require("tools/spriteTable")
 
-function Anim:New(xoffset, yoffset, w, h, column_size, num_frames, fps)
+function Anim:New(num_frames, fps)
     self.fps = fps
     self.timer = 1 / self.fps
     self.frame = 1
     self.num_frames = num_frames
-    self.column_size = column_size
-    self.start_offset = Vector2(xoffset, yoffset)
-    self.offset = Vector2()
-    self.size = Vector2(w, h)
+    self.animate = {}
 end
 
-function Anim:Update(dt)
+function Anim:Reset()
+    self.timer = 1 /self.fps
+    self.frame = 1
+end
+
+function Anim:Update(dt, spritestack)
+    if(self.num_frames <= 1) then return end
+
     self.timer = self.timer - dt
-    if (self.timer <= 0) then
+    if(self.timer <= 0) then
         self.timer = 1 / self.fps
         self.frame = self.frame + 1
-        if(self.frame > self.num_frames) then 
+        if self.frame > self.num_frames then 
             self.frame = 1 
-        end 
-        self.offset.x = self.start_offset.x + (self.size.x * (self.frame - 1))
-        self.offset.y = self.start_offset.y + (self.size.y * (self.frame - 1))
+        end
+        self.animate = spritestack[frame]
     end
 end
 

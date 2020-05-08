@@ -1,4 +1,6 @@
-Animator
+Recode animation system
+Clean code / add entity sysyem
+depth sorting
 camera rotation
 camera angle
 Trees and shit
