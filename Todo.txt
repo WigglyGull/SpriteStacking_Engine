@@ -1,9 +1,0 @@
-Recode animation system
-reanimate player run
-add pixel perfect
-
-depth sorting
-camera rotation
-camera angle
-
-Trees and shit
