@@ -13,7 +13,7 @@ local gamera = {}
 local gameraMt = {__index = gamera}
 local abs, min, max = math.abs, math.min, math.max
 
-gamera.zScale = 0.75
+gamera.zScale = 0.8
 
 local function clamp(x, minX, maxX)
   return x < minX and minX or (x>maxX and maxX or x)
