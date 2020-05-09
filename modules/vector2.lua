@@ -1,3 +1,4 @@
+-- Haven't got around to rewriting it because I already used it so many times :(
 local Vec2 = {}
 
 function Vec2:New(x, y)

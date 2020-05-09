@@ -21,7 +21,7 @@ function Player:Create()
 
     shadow = love.graphics.newImage("assets/gfx/shadow.png")
 
-    player.position = Vec2:New()
+    player.position = Vec2:New(62, 32)
     player.angle = 0
     player.axis = Vec2:New()
 
